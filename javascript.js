@@ -34,6 +34,7 @@ function displayBooks(library, locAtPage) {
   for (const item of library) {
     const bookCard = document.createElement("div");
     bookCard.classList.add("bookCard");
+    bookCard.id = item.title;
 
     // Add book title
     const bookTitle = document.createElement("div");
@@ -59,15 +60,36 @@ function displayBooks(library, locAtPage) {
     bookRead.textContent = "Read: " + item.readStatus;
     bookCard.appendChild(bookRead);
 
+    // Add remove button
+    // <button class="removeBtn">Remove</button>
+    const removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.textContent = "Remove"; // console.log(removeBtn);
+    bookCard.appendChild(removeBtn);
+
     locAtPage.appendChild(bookCard);
+
+    // Once click the remove button, remove the book
+    removeBtn.addEventListener("click", () => {
+      const bookCardToDel = removeBtn.parentNode;
+      // remove book from list
+      const bookIndexToDel = myLibrary.findIndex(
+        (book) => book.title == bookCardToDel.id
+      );
+      myLibrary.splice(bookIndexToDel, 1); // console.log(myLibrary);
+      // Remove book from display
+      removeBtn.parentNode.remove();
+    });
   }
 }
 
 // Initial Library
 const book1 = new Book("River Town", "Peter Hessler", 432, "Yes");
 const book2 = new Book("Oracle", "Peter Hessler", 500, "Yes");
+const book3 = new Book("xxx", "Peter Hessler", 500, "Yes");
 addBookToLibrary(book1);
 addBookToLibrary(book2);
+addBookToLibrary(book3);
 
 // Display initial library
 const bookInLibrary = document.querySelector("#bookInLibrary");
@@ -83,6 +105,9 @@ const bookTitle = document.querySelector("#bookTitle");
 const bookAuthor = document.querySelector("#bookAuthor");
 const bookPages = document.querySelector("#bookPages");
 const bookRead = document.querySelector("#bookRead");
+
+// Remove book buttons
+const removeNewBookBtns = document.querySelectorAll(".removeBtn");
 
 newBookBtn.addEventListener("click", () => {
   // Clear current inputs
@@ -112,16 +137,17 @@ confirmNewBookBtn.addEventListener("click", (e) => {
   }
 });
 
+// Cancel adding new books
 cancelNewBookBtn.addEventListener("click", (e) => {
   newBookDialog.close(); // bypass the validation check
 });
 
 // Unit Test
-// function displayArray(arrayToShow) {
-//   arrayToShow.forEach((item) => console.log(item));
-// }
-// console.log("Initial Library:");
-// displayArray(myLibrary);
+function displayArray(arrayToShow) {
+  arrayToShow.forEach((item) => console.log(item));
+}
+console.log("Initial Library:");
+displayArray(myLibrary);
 
 // book1.info();
 
