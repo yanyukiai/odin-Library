@@ -57,7 +57,15 @@ function displayBooks(library, locAtPage) {
     // Add book read status
     const bookRead = document.createElement("div");
     bookRead.classList.add("bookRead");
-    bookRead.textContent = "Read: " + item.readStatus;
+    const bookReadTxt = document.createElement("div");
+    bookReadTxt.classList.add("bookReadTxt");
+    bookReadTxt.textContent = "Read: ";
+    bookRead.appendChild(bookReadTxt);
+    // Add a button to each book to change its read status
+    const changeStatusBtn = document.createElement("button");
+    changeStatusBtn.classList.add("changeStatusBtn");
+    changeStatusBtn.textContent = item.readStatus;
+    bookRead.appendChild(changeStatusBtn);
     bookCard.appendChild(bookRead);
 
     // Add remove button
@@ -68,6 +76,15 @@ function displayBooks(library, locAtPage) {
     bookCard.appendChild(removeBtn);
 
     locAtPage.appendChild(bookCard);
+
+    // Once click the read status button, change status
+    changeStatusBtn.addEventListener("click", () => {
+      if (changeStatusBtn.textContent == "Yes") {
+        changeStatusBtn.textContent = "No";
+      } else {
+        changeStatusBtn.textContent = "Yes";
+      }
+    });
 
     // Once click the remove button, remove the book
     removeBtn.addEventListener("click", () => {
