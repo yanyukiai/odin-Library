@@ -1,3 +1,62 @@
-h1 {
+/* h1 {
   background-color: aqua;
+} */
+
+/* Global Style */
+li {
+  list-style: none;
+}
+
+#bookInLibrary {
+  display: grid;
+}
+
+.bookCard,
+.bookRead {
+  display: flex;
+}
+
+/* Sections Style */
+#newBookBtn {
+  background-color: #14b8a6;
+  border: none;
+  border-radius: 12px;
+  height: 30px;
+  width: 90px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 10px;
+}
+
+#bookInLibrary {
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.bookCard {
+  flex-direction: column;
+  background-color: #e5e7eb;
+  gap: 2px;
+}
+
+.bookRead {
+  align-items: center;
+}
+
+.changeStatusBtn {
+  margin-left: 4px;
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+}
+
+.changeStatusBtn[value="Yes"] {
+  background-color: #14b8a6;
+}
+
+.changeStatusBtn[value="No"] {
+  background-color: lightcoral;
 }

@@ -65,6 +65,7 @@ function displayBooks(library, locAtPage) {
     const changeStatusBtn = document.createElement("button");
     changeStatusBtn.classList.add("changeStatusBtn");
     changeStatusBtn.textContent = item.readStatus;
+    changeStatusBtn.value = item.readStatus; // console.log(changeStatusBtn);
     bookRead.appendChild(changeStatusBtn);
     bookCard.appendChild(bookRead);
 
@@ -81,8 +82,10 @@ function displayBooks(library, locAtPage) {
     changeStatusBtn.addEventListener("click", () => {
       if (changeStatusBtn.textContent == "Yes") {
         changeStatusBtn.textContent = "No";
+        changeStatusBtn.value = "No";
       } else {
         changeStatusBtn.textContent = "Yes";
+        changeStatusBtn.value = "Yes";
       }
     });
 
@@ -103,10 +106,8 @@ function displayBooks(library, locAtPage) {
 // Initial Library
 const book1 = new Book("River Town", "Peter Hessler", 432, "Yes");
 const book2 = new Book("Oracle", "Peter Hessler", 500, "Yes");
-const book3 = new Book("xxx", "Peter Hessler", 500, "Yes");
 addBookToLibrary(book1);
 addBookToLibrary(book2);
-addBookToLibrary(book3);
 
 // Display initial library
 const bookInLibrary = document.querySelector("#bookInLibrary");
